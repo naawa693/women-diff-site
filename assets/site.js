@@ -24,11 +24,23 @@
     fill('players', players.map(function (p) {
       var sub = /sub/i.test(p.statut || '');
       var num = sub ? 'SUB' : String(++tit).padStart(2, '0');
-      return '<article class="wd-player" style="border-radius: 24px; overflow: hidden; background: #140B20; border: 1px solid #2C1B40">' +
-        '<div style="position: relative; height: 300px; overflow: hidden; background: #1F1230">' +
+      var roles = String(p.role || '').split(/[\/,·]/).map(function (r) { return r.trim(); }).filter(Boolean);
+      if (p.igl && roles.indexOf('IGL') < 0) roles.push('IGL');
+      var tracker = /^https?:\/\//i.test(p.tracker || '') ? p.tracker : '';
+      var chip = function (t) {
+        var gold = t === 'IGL';
+        return '<span class="wd-chip' + (gold ? ' wd-chip-gold' : '') + '">' + esc(t) + '</span>';
+      };
+      return '<article class="wd-player" tabindex="0" aria-label="' + esc(p.nom) + (roles.length ? ', ' + esc(roles.join(', ')) : '') + '" style="border-radius: 24px; overflow: hidden; background: #140B20; border: 1px solid #2C1B40">' +
+        '<div class="wd-ph" style="position: relative; height: 300px; overflow: hidden; background: #1F1230">' +
         '<img src="' + esc(p.photo) + '" alt="Photo de profil de ' + esc(p.nom) + '" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover">' +
         '<span aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(20, 11, 32, 0.95))"></span>' +
-        '<span style="position: absolute; top: 14px; left: 16px; font-family: Poppins, sans-serif; font-weight: 800; font-size: 30px; color: #FFFFFF; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6)">' + num + '</span>' +
+        '<span class="wd-num" style="position: absolute; top: 14px; left: 16px; font-family: Poppins, sans-serif; font-weight: 800; font-size: 30px; color: #FFFFFF; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6)">' + num + '</span>' +
+        '<div class="wd-ov">' +
+        '<p class="wd-ov-lbl">' + (roles.length > 1 ? 'Rôles' : 'Rôle') + '</p>' +
+        (roles.length ? '<div class="wd-chips">' + roles.map(chip).join('') + '</div>' : '<p class="wd-ov-none">Non renseigné</p>') +
+        (tracker ? '<a href="' + esc(tracker) + '" target="_blank" rel="noopener" class="wd-ov-btn">Tracker Valorant ↗</a>' : '<p class="wd-ov-none">Tracker non renseigné</p>') +
+        '</div>' +
         '</div>' +
         '<div style="padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0">' +
         '<h2 style="margin: 0; font-family: Poppins, sans-serif; font-size: 22px; color: #FFFFFF">' + esc(p.nom) + '</h2>' +
@@ -67,7 +79,43 @@
     }).join(''));
 
     bind('nb-joueuses', players.length);
+    playerHover();
     bind('nb-staff', staff.length);
+  }
+
+  /* Survol d'une carte du Roster : la photo se floute et le profil (rôles, tracker) apparaît.
+     Sur téléphone (pas de survol) : un appui sur la carte affiche/masque le profil. */
+  function playerHover() {
+    var grid = document.querySelector('[data-render="players"]');
+    if (!grid || document.getElementById('wd-hover-css')) return;
+    var css = document.createElement('style');
+    css.id = 'wd-hover-css';
+    css.textContent =
+      '.wd-ph img{transition:filter .35s ease,transform .5s ease}' +
+      '.wd-ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:22px;background:rgba(14,8,24,.55);opacity:0;transition:opacity .3s ease}' +
+      '.wd-ov>*{transform:translateY(10px);transition:transform .35s cubic-bezier(.2,.7,.2,1)}' +
+      '.wd-player:hover .wd-ph img,.wd-player:focus-within .wd-ph img,.wd-player.is-open .wd-ph img{filter:blur(10px) brightness(.7);transform:scale(1.12)}' +
+      '.wd-player:hover .wd-ov,.wd-player:focus-within .wd-ov,.wd-player.is-open .wd-ov{opacity:1}' +
+      '.wd-player:hover .wd-ov>*,.wd-player:focus-within .wd-ov>*,.wd-player.is-open .wd-ov>*{transform:none}' +
+      '.wd-player:hover .wd-num,.wd-player:focus-within .wd-num,.wd-player.is-open .wd-num{opacity:0}.wd-num{transition:opacity .2s ease}' +
+      '.wd-ov-lbl{margin:0;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#FFC94A}' +
+      '.wd-chips{display:flex;flex-wrap:wrap;gap:8px}' +
+      '.wd-chip{padding:6px 12px;border-radius:999px;background:rgba(42,24,64,.85);border:1px solid #6B4A95;color:#FFFFFF;font-size:14px;font-weight:600}' +
+      '.wd-chip-gold{background:rgba(255,201,74,.16);border-color:#FFC94A;color:#FFC94A}' +
+      '.wd-ov-none{margin:0;color:#CFC3E0;font-size:14px}' +
+      '.wd-ov-btn{display:flex;align-items:center;justify-content:center;min-height:46px;margin-top:6px;border-radius:999px;background:linear-gradient(135deg,#8B3DFF,#E13CF0);color:#FFFFFF !important;font-weight:600;text-decoration:none;box-shadow:0 10px 26px rgba(139,61,255,.45)}' +
+      '.wd-ov-btn:hover{filter:brightness(1.12)}' +
+      '@media (prefers-reduced-motion: reduce){.wd-ph img,.wd-ov,.wd-ov>*{transition:none}}';
+    document.head.appendChild(css);
+    if (window.matchMedia && !window.matchMedia('(hover: hover)').matches) {
+      grid.addEventListener('click', function (e) {
+        if (e.target.closest('a')) return;
+        var c = e.target.closest('.wd-player');
+        if (!c) return;
+        grid.querySelectorAll('.wd-player.is-open').forEach(function (o) { if (o !== c) o.classList.remove('is-open'); });
+        c.classList.toggle('is-open');
+      });
+    }
   }
 
   function site(d) {
