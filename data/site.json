@@ -1,0 +1,68 @@
+{
+  "contact": {
+    "email": "",
+    "discord_invite": "",
+    "formspree": ""
+  },
+  "reseaux": {
+    "x": "",
+    "twitch": "",
+    "instagram": "",
+    "discord": ""
+  },
+  "objectifs": [
+    {
+      "titre": "Un roster stable",
+      "texte": "5 titulaires et 2 subs, ensemble toute la saison."
+    },
+    {
+      "titre": "Premier",
+      "texte": "Monter dans les divisions hautes et viser l'Invite Division."
+    },
+    {
+      "titre": "Game Changers EMEA",
+      "texte": "Passer les qualifs open et viser un top 8 à 12."
+    },
+    {
+      "titre": "Scène française",
+      "texte": "Top 3 des tournois Game Changers FR et un titre."
+    },
+    {
+      "titre": "Un premier partenaire",
+      "texte": "Et du contenu régulier pour grandir en visibilité."
+    }
+  ],
+  "recrutement": {
+    "rang": "",
+    "profils": [
+      {
+        "titre": "Tous les rôles",
+        "texte": "Duelliste, initiatrice, contrôleuse ou sentinelle : montre-nous ton pool d'agents.",
+        "priorite": true
+      },
+      {
+        "titre": "Sub",
+        "texte": "Une remplaçante polyvalente, prête à entrer sur plusieurs rôles.",
+        "priorite": false
+      }
+    ],
+    "faq": [
+      {
+        "q": "Faut-il avoir un niveau minimum ?",
+        "a": "L'état d'esprit et la régularité comptent autant que le rang. Présente-toi sur Discord, on en discute."
+      },
+      {
+        "q": "Combien de temps dure le Try Out ?",
+        "a": "Quelques semaines de praccs avec l'équipe, le temps de bien se connaître des deux côtés."
+      }
+    ]
+  },
+  "partenaires": {
+    "logos": [],
+    "prix": {
+      "soutien": "",
+      "partenaire": "",
+      "principal": ""
+    }
+  }
+}

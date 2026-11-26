@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Administration · Women Diff</title>
+<link rel="icon" href="/images/favicon.png">
+</head>
+<body>
+<script>
+  /* ⚠️ À MODIFIER : ton pseudo GitHub / nom du dépôt */
+  window.WD_REPO = 'TON-PSEUDO-GITHUB/women-diff-site';
+  window.CMS_MANUAL_INIT = true;
+</script>
+<script src="https://unpkg.com/decap-cms@3.17.3/dist/decap-cms.js"></script>
+<script>
+(function () {
+  var img = function (label, name) { return { label: label, name: name, widget: 'image', required: false }; };
+  var str = function (label, name, req, hint) { return { label: label, name: name, widget: 'string', required: !!req, hint: hint }; };
+  var txt = function (label, name) { return { label: label, name: name, widget: 'text', required: false }; };
+
+  CMS.init({
+    config: {
+      load_config_file: false,
+      locale: 'fr',
+      backend: {
+        name: 'github',
+        repo: window.WD_REPO,
+        branch: 'main',
+        base_url: window.location.origin,
+        auth_endpoint: 'api/auth',
+        commit_messages: { update: 'Site : mise à jour de {{slug}} (admin)' }
+      },
+      media_folder: 'images/uploads',
+      public_folder: '/images/uploads',
+      site_url: window.location.origin,
+      display_url: window.location.origin,
+      collections: [
+        {
+          name: 'contenu',
+          label: 'Contenu du site',
+          editor: { preview: false },
+          files: [
+            {
+              name: 'roster',
+              label: 'Roster (joueuses et staff)',
+              file: 'data/roster.json',
+              format: 'json',
+              fields: [
+                { label: 'Joueuses', name: 'joueuses', widget: 'list', summary: '{{fields.nom}} · {{fields.statut}}',
+                  hint: 'Le bot Discord peut aussi mettre cette liste à jour tout seul.',
+                  fields: [
+                    str('Pseudo affiché', 'nom', true),
+                    str('Pseudo Discord (sans @)', 'discord'),
+                    img('Photo', 'photo'),
+                    { label: 'Statut', name: 'statut', widget: 'select', options: ['Titulaire', 'Sub'], default: 'Titulaire' }
+                  ] },
+                { label: 'Staff', name: 'staff', widget: 'list', summary: '{{fields.nom}} · {{fields.role}}',
+                  fields: [
+                    str('Pseudo affiché', 'nom', true),
+                    str('Rôle (ex. Manager, Coach, CEO)', 'role', true),
+                    str('Pseudo Discord (sans @)', 'discord'),
+                    img('Photo', 'photo')
+                  ] }
+              ]
+            },
+            {
+              name: 'site',
+              label: 'Textes, recrutement, partenaires, contact',
+              file: 'data/site.json',
+              format: 'json',
+              fields: [
+                { label: 'Contact', name: 'contact', widget: 'object', fields: [
+                  str('E-mail de contact', 'email'),
+                  str("Lien d'invitation Discord", 'discord_invite', false, 'Ex. https://discord.gg/xxxx'),
+                  str('Adresse Formspree du formulaire (optionnel)', 'formspree', false, 'Ex. https://formspree.io/f/abcd1234 — sinon le formulaire ouvre la messagerie.')
+                ] },
+                { label: 'Réseaux sociaux (laisser vide pour masquer)', name: 'reseaux', widget: 'object', fields: [
+                  str('X / Twitter', 'x'), str('Twitch', 'twitch'), str('Instagram', 'instagram'), str('Discord', 'discord')
+                ] },
+                { label: 'Objectifs de la saison', name: 'objectifs', widget: 'list', summary: '{{fields.titre}}', fields: [
+                  str('Titre', 'titre', true), txt('Texte', 'texte')
+                ] },
+                { label: 'Recrutement', name: 'recrutement', widget: 'object', fields: [
+                  str('Rang minimum (vide = masqué)', 'rang'),
+                  { label: 'Profils recherchés', name: 'profils', widget: 'list', summary: '{{fields.titre}}', fields: [
+                    str('Rôle', 'titre', true), txt('Ce qu\'on attend', 'texte'),
+                    { label: 'Priorité', name: 'priorite', widget: 'boolean', default: false, required: false }
+                  ] },
+                  { label: 'Questions fréquentes', name: 'faq', widget: 'list', summary: '{{fields.q}}', fields: [
+                    str('Question', 'q', true), txt('Réponse', 'a')
+                  ] }
+                ] },
+                { label: 'Partenaires', name: 'partenaires', widget: 'object', fields: [
+                  { label: 'Logos partenaires', name: 'logos', widget: 'list', summary: '{{fields.nom}}', required: false, fields: [
+                    str('Nom', 'nom', true), img('Logo', 'logo'), str('Lien du site', 'lien')
+                  ] },
+                  { label: 'Prix des formules (vide = « Sur devis »)', name: 'prix', widget: 'object', fields: [
+                    str('Soutien', 'soutien'), str('Partenaire', 'partenaire'), str('Partenaire principal', 'principal')
+                  ] }
+                ] }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  });
+})();
+</script>
+</body>
+</html>

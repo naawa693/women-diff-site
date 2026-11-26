@@ -1,0 +1,54 @@
+{
+  "joueuses": [
+    {
+      "nom": "Luce",
+      "discord": "luce_uh",
+      "photo": "/images/joueuses/luce_uh.webp",
+      "statut": "Titulaire"
+    },
+    {
+      "nom": "Raniiaaa",
+      "discord": ".konekohime.",
+      "photo": "/images/joueuses/konekohime.webp",
+      "statut": "Titulaire"
+    },
+    {
+      "nom": "Akam",
+      "discord": "akamvlr",
+      "photo": "/images/joueuses/akamvlr.webp",
+      "statut": "Titulaire"
+    },
+    {
+      "nom": "Phébé",
+      "discord": "444phebe",
+      "photo": "/images/joueuses/444phebe.webp",
+      "statut": "Sub"
+    }
+  ],
+  "staff": [
+    {
+      "nom": "Dravix",
+      "role": "CEO · Coach",
+      "discord": "dravix_fps",
+      "photo": "/images/staff/dravix_fps.webp"
+    },
+    {
+      "nom": "Naawa",
+      "role": "CEO",
+      "discord": "naawa",
+      "photo": "/images/staff/naawa.webp"
+    },
+    {
+      "nom": "Sayz",
+      "role": "Manager",
+      "discord": "sayz7272",
+      "photo": "/images/staff/sayz7272.webp"
+    },
+    {
+      "nom": "Akaza",
+      "role": "Manager",
+      "discord": "teakaza",
+      "photo": "/images/staff/teakaza.webp"
+    }
+  ]
+}
