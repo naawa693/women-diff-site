@@ -1,22 +1,28 @@
 {
   "joueuses": [
     {
+      "id": "949380896665006090",
       "nom": "Luce",
       "discord": "luce_uh",
-      "photo": "/images/joueuses/luce_uh.webp",
-      "statut": "Titulaire"
+      "photo": "/images/joueuses/949380896665006090.webp?v=96732191",
+      "statut": "Titulaire",
+      "avatar": "7f797740e3bd54ac0e08618a96732191"
     },
     {
+      "id": "613523747374104775",
       "nom": "Raniiaaa",
       "discord": ".konekohime.",
-      "photo": "/images/joueuses/konekohime.webp",
-      "statut": "Titulaire"
+      "photo": "/images/joueuses/613523747374104775.webp?v=0569341a",
+      "statut": "Titulaire",
+      "avatar": "c90e31adb3c9c820519a109e0569341a"
     },
     {
+      "id": "704397170719326230",
       "nom": "Akam",
       "discord": "akamvlr",
-      "photo": "/images/joueuses/akamvlr.webp",
-      "statut": "Titulaire"
+      "photo": "/images/joueuses/704397170719326230.webp?v=33310e88",
+      "statut": "Titulaire",
+      "avatar": "7a42d6830521e97b6640b66d33310e88"
     },
     {
       "nom": "Phébé",
