@@ -14,6 +14,7 @@
     return fetch(url, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(url); return r.json(); });
   };
 
+  var X_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right:8px"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.2l-4.8-6.3L6.4 22H3.3l7.3-8.3L1 2h6.3l4.4 5.8L18.9 2Zm-1.1 18h1.7L6.3 3.9H4.5L17.8 20Z"/></svg>';
   var DISCORD_SVG = '<svg width="20" height="20" viewBox="0 0 24 24" fill="#E9B8FF" aria-hidden="true" style="flex: none"><path d="M19.6 5.3A16.6 16.6 0 0 0 15.5 4l-.5 1a15.4 15.4 0 0 0-6 0L8.5 4a16.6 16.6 0 0 0-4.1 1.3C1.8 9.2 1.1 13 1.4 16.7a16.7 16.7 0 0 0 5 2.5l1.1-1.7a10.8 10.8 0 0 1-1.7-.8l.4-.3a11.9 11.9 0 0 0 11.6 0l.4.3a10.8 10.8 0 0 1-1.7.8l1.1 1.7a16.7 16.7 0 0 0 5-2.5c.4-4.3-.7-8-2.9-11.4ZM8.7 14.5c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z"/></svg>';
 
   function roster(r) {
@@ -28,6 +29,8 @@
       if (p.igl && roles.indexOf('IGL') < 0) roles.push('IGL');
       var tracker = /^https?:\/\//i.test(p.tracker || '') ? p.tracker : '';
       var vlr = /^https?:\/\/(www\.)?vlr\.gg\//i.test(p.vlr || '') ? p.vlr : '';
+      var xurl = /^https?:\/\/(www\.)?(x|twitter)\.com\//i.test(p.x || '') ? p.x : '';
+      var xname = xurl ? '@' + xurl.replace(/\/+$/, '').split('/').pop() : '';
       var chip = function (t) {
         var gold = t === 'IGL';
         return '<span class="wd-chip' + (gold ? ' wd-chip-gold' : '') + '">' + esc(t) + '</span>';
@@ -40,7 +43,7 @@
         '<div class="wd-ov">' +
         '<p class="wd-ov-lbl">' + (roles.length > 1 ? 'Rôles' : 'Rôle') + '</p>' +
         (roles.length ? '<div class="wd-chips">' + roles.map(chip).join('') + '</div>' : '<p class="wd-ov-none">Non renseigné</p>') +
-        (tracker ? '<a href="' + esc(tracker) + '" target="_blank" rel="noopener" class="wd-ov-btn">Tracker Valorant ↗</a>' : '<p class="wd-ov-none">Tracker non renseigné</p>') +
+        (xurl ? '<a href="' + esc(xurl) + '" target="_blank" rel="noopener" class="wd-ov-btn" aria-label="Twitter de ' + esc(p.nom) + '">' + X_SVG + esc(xname) + ' ↗</a>' : '') +
         (vlr ? '<a href="' + esc(vlr) + '" target="_blank" rel="noopener" class="wd-ov-btn wd-ov-vlr">Profil VLR.gg ↗</a>' : '') +
         '</div>' +
         '</div>' +
