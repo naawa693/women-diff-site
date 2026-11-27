@@ -1,2 +1,5 @@
 User-agent: *
 Disallow: /admin/
+Disallow: /_maj/
+
+Sitemap: https://womendiff.fr/sitemap.xml
