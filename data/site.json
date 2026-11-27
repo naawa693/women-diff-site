@@ -36,11 +36,6 @@
     "rang": "Peak Immortel 1, avec un minimum d'expérience en compétition",
     "profils": [
       {
-        "titre": "Initiatrice",
-        "texte": "Tu ouvres les sites pour l'équipe : infos, flashs et utilitaires bien placés (Sova, Fade, Skye, KAY/O, Gekko, Breach, Tejo…). Peak Immortel 1 minimum et un peu d'expérience en compétition.",
-        "priorite": true
-      },
-      {
         "titre": "Duelliste",
         "texte": "Tu prends les premiers duels et crées l'espace à l'entrée des sites (Jett, Raze, Neon, Reyna, Phoenix, Yoru, Iso, Waylay…). Peak Immortel 1 minimum et un peu d'expérience en compétition.",
         "priorite": true
