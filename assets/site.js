@@ -27,6 +27,7 @@
       var roles = String(p.role || '').split(/[\/,·]/).map(function (r) { return r.trim(); }).filter(Boolean);
       if (p.igl && roles.indexOf('IGL') < 0) roles.push('IGL');
       var tracker = /^https?:\/\//i.test(p.tracker || '') ? p.tracker : '';
+      var vlr = /^https?:\/\/(www\.)?vlr\.gg\//i.test(p.vlr || '') ? p.vlr : '';
       var chip = function (t) {
         var gold = t === 'IGL';
         return '<span class="wd-chip' + (gold ? ' wd-chip-gold' : '') + '">' + esc(t) + '</span>';
@@ -40,6 +41,7 @@
         '<p class="wd-ov-lbl">' + (roles.length > 1 ? 'Rôles' : 'Rôle') + '</p>' +
         (roles.length ? '<div class="wd-chips">' + roles.map(chip).join('') + '</div>' : '<p class="wd-ov-none">Non renseigné</p>') +
         (tracker ? '<a href="' + esc(tracker) + '" target="_blank" rel="noopener" class="wd-ov-btn">Tracker Valorant ↗</a>' : '<p class="wd-ov-none">Tracker non renseigné</p>') +
+        (vlr ? '<a href="' + esc(vlr) + '" target="_blank" rel="noopener" class="wd-ov-btn wd-ov-vlr">Profil VLR.gg ↗</a>' : '') +
         '</div>' +
         '</div>' +
         '<div style="padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0">' +
@@ -105,6 +107,7 @@
       '.wd-ov-none{margin:0;color:#CFC3E0;font-size:14px}' +
       '.wd-ov-btn{display:flex;align-items:center;justify-content:center;min-height:46px;margin-top:6px;border-radius:999px;background:linear-gradient(135deg,#8B3DFF,#E13CF0);color:#FFFFFF !important;font-weight:600;text-decoration:none;box-shadow:0 10px 26px rgba(139,61,255,.45)}' +
       '.wd-ov-btn:hover{filter:brightness(1.12)}' +
+      '.wd-ov-vlr{margin-top:0;background:rgba(14,8,24,.75);border:1px solid #E86BF5;box-shadow:none}' +
       '@media (prefers-reduced-motion: reduce){.wd-ph img,.wd-ov,.wd-ov>*{transition:none}}';
     document.head.appendChild(css);
     if (window.matchMedia && !window.matchMedia('(hover: hover)').matches) {
