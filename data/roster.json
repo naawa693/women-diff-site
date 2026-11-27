@@ -34,10 +34,15 @@
       "avatar": "7a42d6830521e97b6640b66d33310e88"
     },
     {
+      "id": "419513057266630656",
       "nom": "Phébé",
       "discord": "444phebe",
-      "photo": "/images/joueuses/444phebe.webp",
-      "statut": "Sub"
+      "photo": "/images/joueuses/419513057266630656.webp?v=eb8615c3",
+      "statut": "Sub",
+      "role": "Initiateur / Flex",
+      "igl": false,
+      "tracker": "https://tracker.gg/valorant/profile/riot/phebe%23444",
+      "avatar": "164c2ddc5e5228689011cbb4eb8615c3"
     }
   ],
   "staff": [
