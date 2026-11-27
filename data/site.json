@@ -33,23 +33,23 @@
     }
   ],
   "recrutement": {
-    "rang": "",
+    "rang": "Peak Immortel 1, avec un minimum d'expérience en compétition",
     "profils": [
       {
-        "titre": "Tous les rôles",
-        "texte": "Duelliste, initiatrice, contrôleuse ou sentinelle : montre-nous ton pool d'agents.",
+        "titre": "Initiatrice",
+        "texte": "Tu ouvres les sites pour l'équipe : infos, flashs et utilitaires bien placés (Sova, Fade, Skye, KAY/O, Gekko, Breach, Tejo…). Peak Immortel 1 minimum et un peu d'expérience en compétition.",
         "priorite": true
       },
       {
-        "titre": "Sub",
-        "texte": "Une remplaçante polyvalente, prête à entrer sur plusieurs rôles.",
-        "priorite": false
+        "titre": "Duelliste",
+        "texte": "Tu prends les premiers duels et crées l'espace à l'entrée des sites (Jett, Raze, Neon, Reyna, Phoenix, Yoru, Iso, Waylay…). Peak Immortel 1 minimum et un peu d'expérience en compétition.",
+        "priorite": true
       }
     ],
     "faq": [
       {
         "q": "Faut-il avoir un niveau minimum ?",
-        "a": "L'état d'esprit et la régularité comptent autant que le rang. Présente-toi sur Discord, on en discute."
+        "a": "Oui : Peak Immortel 1 minimum, avec un peu d'expérience en compétition (scrims, tournois, Premier). L'état d'esprit et la régularité comptent autant que le rang."
       },
       {
         "q": "Combien de temps dure le Try Out ?",
